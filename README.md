@@ -1,6 +1,6 @@
 # Jons Livewire Crash Course Notes
 
-this is the beginning of Jon's Livewire Crash Course notes
+these are the notes for Jon's Livewire Crash Course 
 
 it follows closely NetNinja's [livewire-3-crash-course](https://github.com/iamshaunjp/livewire-3-crash-course)
 
@@ -22,6 +22,9 @@ where NNN is a 3 digit number and another variant may also be
 
 where `something-is-happening` is related to an activity / feature or such as a part of that stage
 
+in each branch, see [notes](notes.md) for commentary  at each stage
+
+---
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
