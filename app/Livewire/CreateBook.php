@@ -33,7 +33,7 @@ class CreateBook extends Component
         'rating' => $this->rating
       ]);
 
-      $this->redirect('/');
+      $this->redirect('/', navigate: true);
     }
 
     public function render()

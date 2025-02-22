@@ -1,31 +1,30 @@
-validation is trivial to add in livewire and I would say if we're looking for a reason to use livewire and for that matter laravel as a framework this is one good reason of many
+
+navigation can be made a bit quicker in livewire 
 
 ```php
-@error('title')
-      <div class="error">{{ $message }}</div>
-@enderror
+$this->redirect('/', navigate: true);
 ```
 
-this blade template markup conditionally shows an error if there is one
+this uses [wire:navigate a part of redirects]([      $this->redirect('/', navigate: true);](https://livewire.laravel.com/docs/navigate#redirects) in livewire
 
-in the model for create book the followng rules are added that themselves call upon `Livewire\Attributes\Rule`
+links themselves in templates are modified to look something like
 
 ```php
-    #[Rule('string|required|min:3|max:50')]
-    public $title;
-
-    #[Rule('string|required|min:3|max:50')]
-    public $author;
-
-    #[Rule('integer|required|min:1|max:10')]
-    public $rating;
-
-    public function save()
-    {
-      $this->validate();
-
-      ...
+<a wire:navigate @class(['active' => request()->is('/')]) href="/">
+      Book List
+</a>
 ```
 
-and the `validate()` method invokes tis on save
+so, just `wire:navigate` here added
 
+that is pretty much it
+
+now, page reloads will be replaced by in place updates as required
+
+I believe this works in a similar way to how ruby on rails hotwire but dont quote me on that
+
+the way I understand this is that laravel, livewire and alpinejs all work in sync to refresh only the inline html / content that is needed at any one time and datas that are entered / enacted by the user similar
+
+all this is worked out for us in the background quintessentially by magic
+
+a lot of working, moving parts, spinning plates done for us 
