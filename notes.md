@@ -1,46 +1,34 @@
-a book model, migration and factory is created with
+a function is added to handle a delete in each row
 
-```bash
-sail artisan make:model Book -fm
-sail artisan make:seeder BookSeeder
+`wire:key` is of note as this is how items are indexed in the dom
+
+delete gets the id passed in order to delete, as in normal blade templates
+
+
+```html
+    <ul class="list">
+        @foreach ($books as $book)
+            <li wire:key="{{ $book->id }}">
+                <button wire:click="delete({{ $book->id }})">
+                    Delete
+                </button>
+                <h3>{{ $book->title }}</h3>
+                <h4>{{ $book->author }}</h4>
+                <p>Rating: {{ $book->rating }}/10</p>
+            </li>
+        @endforeach
+    </ul>
+````
+
+in the model file `BookList.php`
+
+```php
+    public function delete(Book $book)
+    {
+      $book->delete();
+    }
 ```
 
-which creates tne following
+a simple function here, nothing to see much
 
-```
-   INFO  Model [app/Models/Book.php] created successfully.  
-
-   INFO  Factory [database/factories/BookFactory.php] created successfully.  
-
-   INFO  Migration [database/migrations/2025_02_21_164936_create_books_table.php] created successfully.  
-```
-
-```
-   INFO  Seeder [database/seeders/BookSeeder.php] created successfully.  
-```
-
-
-a bookList component in livewire is created with
-
-```bash
-sail artisan livewire:make BookList
-```
-
-this creates 2 files for us
-
-```
-COMPONENT CREATED  🤙
-
-CLASS: app/Livewire/BookList.php
-VIEW:  resources/views/livewire/book-list.blade.php
-```
-
-each of the above files will need updated as in this branch and then a migration and seed will need to be run
-
-
-```bash
-sail artisan migrate --seed
-```
-
-running this will dislay an ugly list of books unless you add the css a found in `app.css` ( those found after the 3 tailwind directives at the top of the file ) curtesy of NetNinjas crash course
-
+I suppose `$book->delete()` is of note as this is a benefit of having laravel eloquent to make this as simple as it is to read and implement
