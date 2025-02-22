@@ -1,6 +1,6 @@
-# Jons Livewire Crash Course Notes
+# Livewire Crash Course Notes
 
-this is the beginning of Jon's Livewire Crash Course notes
+this is the beginning of my Livewire Crash Course notes
 
 it follows closely NetNinja's [livewire-3-crash-course](https://github.com/iamshaunjp/livewire-3-crash-course)
 
