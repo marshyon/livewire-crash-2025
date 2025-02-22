@@ -1,5 +1,5 @@
 <div>
-    <livewire:page-header>
+    <livewire:page-header subtitle="Here's a list of your books...">
 
         <ul class="list">
             @foreach ($books as $book)
