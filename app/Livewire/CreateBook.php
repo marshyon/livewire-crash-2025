@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class CreateBook extends Component
 {
-    // #[Layout('components.layouts.second')]
     public function render()
     {
         return view('livewire.create-book');

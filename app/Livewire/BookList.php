@@ -7,8 +7,6 @@ use Livewire\Component;
 
 class BookList extends Component
 {
-    public $name = 'Mario';
-
     public function delete(Book $book)
     {
       $book->delete();

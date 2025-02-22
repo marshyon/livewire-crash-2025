@@ -9,3 +9,12 @@ sail artisan make:livewire page-header
 CLASS: app/Livewire/PageHeader.php
 VIEW:  resources/views/livewire/page-header.blade.php
 ```
+
+the content from the header section is added and a `$name` variable added to the model
+
+it is then included into the book list template useing
+
+```php
+   <livewire:page-header>
+```
+
