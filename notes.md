@@ -1,19 +1,61 @@
-some style changes - see `app.css`
+to use livewire components as full pages like a laravel blade a layout needs to be created for the livewire component to use
 
-added a form
+```bash
+php artisan livewire:layout
+ LAYOUT CREATED  🤙
 
-```html
-<form wire:submit="$refresh">
-   <span class="mr-2">Your Name:</span>
-   <input type="text" wire:model.live.debounce.500ms="name">
-</form>
+CLASS: resources/views/components/layouts/app.blade.php
 ```
 
-this adds into this blade binding between a simple form element and `$name` of the model
+this file has a slot, title and local defined out of the box
 
-simple but also shows debounce and live 
+it is into this file now we need layout that was formerly in the welcome page laravel gave us when starting up the project
 
-[live updating](https://livewire.laravel.com/docs/wire-model#live-updating) is where changes are sent as the user types
+```html
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-to cut down on some traffic in this regard, debounce is used so there is a delay between data bursts, reducing server load when you have 1000s of users
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>{{ $title ?? 'Page Title' }}</title>
+    @vite('resources/css/app.css')
+</head>
+
+<body>
+    <nav>
+        <div>
+            <h1>My Book Reviews</h1>
+            <a @class(['active' => request()->is('/')]) href="/">
+                Book List
+            </a>
+            <a @class(['active' => request()->is('create')]) href="/create">
+                Add a Book
+            </a>
+        </div>
+    </nav>
+    <main>
+        {{ $slot }}
+    </main>
+</body>
+
+</html>
+```
+
+`web.php` needs to be updated to use the component we made in the earlier stage
+
+```php
+use App\Livewire\BookList;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', BookList::class);
+```
+
+which I find interesting as the 'function' that was there is replaced by a `BookList::class` which, without the above template being made and updated would not have known how to create a page as it needs a layout do to so
+
+the file `resources/views/welcome.blade.php` can be removed as it is no longer in use
+
+so using Laravel in the traditional sense of blade template files for the welcome page and embedding livewire components as we go is no more
+
+this is a full page livewire page now
