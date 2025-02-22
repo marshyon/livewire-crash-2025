@@ -5,7 +5,7 @@ navigation can be made a bit quicker in livewire
 $this->redirect('/', navigate: true);
 ```
 
-this uses [wire:navigate a part of redirects]([      $this->redirect('/', navigate: true);](https://livewire.laravel.com/docs/navigate#redirects) in livewire
+this uses [wire:navigate a part of redirects](https://livewire.laravel.com/docs/navigate#redirects) in livewire
 
 links themselves in templates are modified to look something like
 
