@@ -1,34 +1,19 @@
-a function is added to handle a delete in each row
+some style changes - see `app.css`
 
-`wire:key` is of note as this is how items are indexed in the dom
-
-delete gets the id passed in order to delete, as in normal blade templates
-
+added a form
 
 ```html
-    <ul class="list">
-        @foreach ($books as $book)
-            <li wire:key="{{ $book->id }}">
-                <button wire:click="delete({{ $book->id }})">
-                    Delete
-                </button>
-                <h3>{{ $book->title }}</h3>
-                <h4>{{ $book->author }}</h4>
-                <p>Rating: {{ $book->rating }}/10</p>
-            </li>
-        @endforeach
-    </ul>
-````
-
-in the model file `BookList.php`
-
-```php
-    public function delete(Book $book)
-    {
-      $book->delete();
-    }
+<form wire:submit="$refresh">
+   <span class="mr-2">Your Name:</span>
+   <input type="text" wire:model.live.debounce.500ms="name">
+</form>
 ```
 
-a simple function here, nothing to see much
+this adds into this blade binding between a simple form element and `$name` of the model
 
-I suppose `$book->delete()` is of note as this is a benefit of having laravel eloquent to make this as simple as it is to read and implement
+simple but also shows debounce and live 
+
+[live updating](https://livewire.laravel.com/docs/wire-model#live-updating) is where changes are sent as the user types
+
+to cut down on some traffic in this regard, debounce is used so there is a delay between data bursts, reducing server load when you have 1000s of users
+

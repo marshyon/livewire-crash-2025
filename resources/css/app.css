@@ -36,7 +36,7 @@ h3 {
 button {
     font-size: 1rem;
     background: var(--highlight);
-    @apply px-2 py-1 font-semibold text-white rounded;
+    @apply px-2 py-2 font-semibold text-white rounded;
 }
 
 input {
@@ -80,6 +80,10 @@ main {
 /* book list page */
 header {
     @apply my-7;
+
+    button {
+        @apply ml-1;
+    }
 }
 
 .list {
@@ -97,7 +101,7 @@ header {
     }
 
     button {
-        @apply float-end;
+        @apply py-1 float-end;
     }
 }
 
