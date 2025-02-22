@@ -21,6 +21,12 @@ in the running app shell crete a new application key
 php artisan key:generate
 ```
 
+run a migration to crete the db 
+
+```bash
+php artisan migrate
+```
+
 this project will already have livewire installed but a fresh laravel project will need this installed with
 
 ```bash
