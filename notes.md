@@ -1,13 +1,31 @@
-parameters or 'props' can be passed into livewire components not unlike in other frameworks like react
+validation is trivial to add in livewire and I would say if we're looking for a reason to use livewire and for that matter laravel as a framework this is one good reason of many
 
 ```php
-    <livewire:page-header subtitle="Here's a list of your books...">
+@error('title')
+      <div class="error">{{ $message }}</div>
+@enderror
 ```
 
-is how a string literal can be passed to the page header component
+this blade template markup conditionally shows an error if there is one
 
-where data is dynamic in nature, this needs to be preceded with a colon `:subtitle=...` but here it is not so that is not needed
+in the model for create book the followng rules are added that themselves call upon `Livewire\Attributes\Rule`
 
-within the component page header, it receives this and can use the value in a [lifecycle hook](https://livewire.laravel.com/docs/lifecycle-hooks), again, not dissimilar to in react at least in principle
+```php
+    #[Rule('string|required|min:3|max:50')]
+    public $title;
 
-[passing paraemers](https://livewire.laravel.com/docs/components#passing-data-into-components) describes the use of mount and this in action
+    #[Rule('string|required|min:3|max:50')]
+    public $author;
+
+    #[Rule('integer|required|min:1|max:10')]
+    public $rating;
+
+    public function save()
+    {
+      $this->validate();
+
+      ...
+```
+
+and the `validate()` method invokes tis on save
+
